@@ -1,10 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Input,
   OnInit,
 } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { ScoreState } from 'src/app/models/scoreState.interface';
 import { getScore } from 'src/app/state/score.selcetors';
 
@@ -19,11 +20,9 @@ export class ScoresComponent implements OnInit {
 
   // Initializing observable
   score$: Observable<any>;
-  highScore:number = 0;
+  @Input() highScore:number
 
-  gethighScore() {
-    this.highScore = Number(localStorage.getItem("highScore"));
-  }
+
   ngOnInit(): void {
     // fetching data from store
     this.score$ = this.store.select(getScore);

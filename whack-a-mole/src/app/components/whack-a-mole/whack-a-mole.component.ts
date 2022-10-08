@@ -76,8 +76,8 @@ export class WhackAMoleComponent implements OnInit {
     hole.showing = true;
 
     setTimeout(() => {
-      if (hole.showing == true) {
-        if (hole.whacked == false) {
+      if (hole.showing === true) {
+        if (hole.whacked === false) {
           this.onDecrement();
         } else {
           hole.whacked = false;
@@ -94,7 +94,7 @@ export class WhackAMoleComponent implements OnInit {
     this.timer = setInterval(() => {
       this.currentTime--;
 
-      if (this.currentTime == 0) {
+      if (this.currentTime === 0) {
         this.gameEnd();
       }
     }, 1000);
@@ -112,11 +112,11 @@ export class WhackAMoleComponent implements OnInit {
     if(this.currentScore >= this.highScore ) {
       this.highScore = this.currentScore;
       this.setHighScore();
-      this.gethighScore();
+      this.getHighScore();
     }
   }
 
-  // Whacking function
+  // Whacking function/ Event
 
   whack(mole) {
     if (mole.showing) {
@@ -140,12 +140,19 @@ export class WhackAMoleComponent implements OnInit {
     this.store.dispatch(reset());
   }
 
-
+  // Setting High Score
    setHighScore() {
     localStorage.setItem("highScore",this.highScore.toString());
   }
 
-  gethighScore() {
+  // Getting High Score
+  getHighScore() {
     this.highScore = Number(localStorage.getItem("highScore"));
+  }
+
+  // Reseting High Score
+  reSetHighScore() {
+    this.highScore = 0;
+    this.setHighScore();
   }
 }
