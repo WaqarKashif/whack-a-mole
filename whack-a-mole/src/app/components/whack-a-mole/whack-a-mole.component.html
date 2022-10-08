@@ -1,0 +1,21 @@
+
+<app-scores></app-scores>
+<div class="grid" >
+    <button *ngIf="!isStart" (click)="startGame()">Start</button>
+    <ng-container *ngIf="isStart">
+        <div  class="container" *ngFor="let item of moleList ">
+            <div class="mole" [class.showing] = "item.showing == true" (click)="whack(item)">
+             
+            </div>
+        
+        
+        </div>
+    </ng-container>
+    
+
+</div>
+<h3>
+Time left: {{currentTime}}
+
+</h3>
+

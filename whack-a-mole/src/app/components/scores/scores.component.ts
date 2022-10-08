@@ -19,7 +19,11 @@ export class ScoresComponent implements OnInit {
 
   // Initializing observable
   score$: Observable<any>;
+  highScore:number = 0;
 
+  gethighScore() {
+    this.highScore = Number(localStorage.getItem("highScore"));
+  }
   ngOnInit(): void {
     // fetching data from store
     this.score$ = this.store.select(getScore);
